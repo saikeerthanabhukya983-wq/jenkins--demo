@@ -2,21 +2,28 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                echo 'Fetching code from GitHub...'
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Building project...'
+                echo 'No build needed for HTML project'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Testing project...'
+                echo 'Checking if index.html exists...'
+                bat 'if exist index.html (echo File exists) else (exit 1)'
             }
         }
 
-        stage('Deploy') {
+        stage('Archive') {
             steps {
-                echo 'Deploying project...'
+                archiveArtifacts artifacts: '*.html', fingerprint: true
             }
         }
     }
