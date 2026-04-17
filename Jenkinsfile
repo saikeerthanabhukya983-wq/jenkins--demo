@@ -28,11 +28,5 @@ pipeline {
                 bat 'dir'
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Opening calculator...'
-                bat 'start calculator.html'
-            }
-        }
     }
 }
